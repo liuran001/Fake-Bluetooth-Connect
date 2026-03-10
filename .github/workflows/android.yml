@@ -23,11 +23,11 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: '21'
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -78,21 +78,9 @@ jobs:
           ref: master
           path: libxposed-api
 
-      - name: Set up JDK 21 for libxposed api
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '21'
-
       - name: Publish libxposed api to Maven local
         working-directory: libxposed-api
         run: ./gradlew publishToMavenLocal
-
-      - name: Switch back to JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
 
       - name: Build debug and release APK
         run: ./gradlew clean assembleDebug assembleRelease --stacktrace
