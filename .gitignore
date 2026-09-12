@@ -23,5 +23,6 @@ keystore.properties
 *.keystore
 
 # Generated / temporary
+.tmp/
 *.tmp
 *.swp
